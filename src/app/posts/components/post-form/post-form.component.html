@@ -1,0 +1,30 @@
+<div class="post-form-container">
+  <div class="form-panel" *ngIf="!isAuthenticated">
+    <h2>Please login to create memories...</h2>
+  </div>
+  <div class="form-panel" *ngIf="isAuthenticated">
+    <h2>{{ title }}</h2>
+    <form [formGroup]="postForm" (ngSubmit)="submitPostForm()">
+      <div class="input-box">
+        <input type="text" name="title" formControlName="title" required />
+        <label for="">Title</label>
+      </div>
+      <div class="input-box">
+        <textarea name="message" formControlName="message" required></textarea>
+        <label for="">Message</label>
+      </div>
+      <div class="input-box">
+        <input type="text" name="tags" formControlName="tags" />
+        <label for="">Tags (coma separated)</label>
+      </div>
+      <input id="fileId" type="file" (change)="uploadFile($event)" />
+      <button
+        type="submit"
+        class="auth-btn auth-btn-primary auth-btn-ghost auth-btn-shine"
+      >
+        SUBMIT
+      </button>
+      <button class="clear-btn" (click)="clearPostForm()">CLEAR</button>
+    </form>
+  </div>
+</div>

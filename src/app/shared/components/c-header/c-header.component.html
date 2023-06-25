@@ -1,0 +1,69 @@
+<nav
+  class="navbar cust-header navbar-expand-lg navbar-dark bd-navbar sticky-top"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <div class="d-flex align-items-center">
+        <img
+          src="../../../../assets/icons/favicon.png"
+          alt="logo"
+          class="logo"
+        />
+        <span class="ml-1 header-text">Fakebook</span>
+      </div>
+    </a>
+    <div class="btn-container">
+      <div
+        class="user-name"
+        *ngIf="isAuthenticated && !userPhotoUrl"
+        style="
+          position: relative;
+          cursor: pointer;
+          box-shadow: -5px -5px 10px rgba(40, 39, 59, 0.05),
+            5px 5px 10px rgba(0, 0, 0, 0.5);
+        "
+        (click)="showUserDetailsPanel($event)"
+      >
+        <span style="font-weight: 700">{{ nameInitial }}</span>
+      </div>
+      <div
+        *ngIf="isAuthenticated && userPhotoUrl"
+        style="position: relative; cursor: pointer"
+        (click)="showUserDetailsPanel($event)"
+      >
+        <img class="user-image" src="{{ userPhotoUrl }}" alt="" srcset="" />
+      </div>
+      <div
+        class="user-details-container"
+        *ngIf="isAuthenticated && showUserDetails"
+        (click)="$event.stopPropagation()"
+      >
+        <div class="details-panel">
+          <div class="row mb-2">
+            <div class="col-12" style="gap: 10px">
+              <span class="name-initial-icon">{{ nameInitial }}</span>
+              <span>{{ userDetails.name }}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">{{ userDetails.email }}</div>
+          </div>
+        </div>
+      </div>
+      <button
+        *ngIf="!isAuthenticated"
+        class="auth-btn auth-btn-primary auth-btn-ghost auth-btn-shine"
+        (click)="authenticate()"
+      >
+        Login
+      </button>
+      <button
+        *ngIf="isAuthenticated"
+        class="auth-btn auth-btn-primary auth-btn-ghost auth-btn-shine"
+        (click)="logOut()"
+      >
+        Logout
+      </button>
+    </div>
+  </div>
+</nav>

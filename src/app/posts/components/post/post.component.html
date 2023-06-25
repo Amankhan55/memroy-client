@@ -1,0 +1,69 @@
+<div class="post-container">
+  <div class="post-header">
+    <div class="header-text">
+      <span>
+        {{ post.name }}
+      </span>
+    </div>
+    <div
+      class="edit-icon"
+      (click)="editPost()"
+      *ngIf="
+        post.creator === userDetails?.id || post.creator === userDetails?._id
+      "
+    >
+      <img class="cust-icon" src="../../../../assets/icons/menu.png" alt="" />
+    </div>
+  </div>
+  <div class="image-container">
+    <img class="image" src="{{ post.selectedFile }}" alt="Image" />
+  </div>
+  <div class="title-container">
+    <span>{{ post.title }}</span>
+  </div>
+  <div class="msg-container">
+    <div class="msg-panel">{{ post.message }}</div>
+  </div>
+  <div class="tag-container">
+    <ng-container *ngFor="let tag of post.tags">
+      #<span class="tag-text">{{ tag.trim() }}</span> &nbsp;</ng-container
+    >
+  </div>
+  <div class="time-container">
+    <span>{{ post.createdAt | dateAgo }}</span>
+  </div>
+  <div class="btn-container">
+    <div class="like-btn-container">
+      <button
+        class="icon-btn like-btn"
+        [disabled]="!isAuthenticated"
+        (click)="likePost()"
+      >
+        <img
+          class="cust-icon"
+          src="../../../../assets/icons/like.png"
+          alt=""
+          *ngIf="!liked"
+        />
+        <img
+          class="cust-icon"
+          src="../../../../assets/icons/liked.png"
+          alt=""
+          *ngIf="liked"
+        />
+      </button>
+      <div class="like-count" *ngIf="likeArray.length > 0">
+        {{ likeArray.length }}
+      </div>
+    </div>
+    <div
+      class="icon-btn"
+      (click)="deletePost()"
+      *ngIf="
+        post.creator === userDetails?.id || post.creator === userDetails?._id
+      "
+    >
+      <img class="cust-icon" src="../../../../assets/icons/delete.png" alt="" />
+    </div>
+  </div>
+</div>

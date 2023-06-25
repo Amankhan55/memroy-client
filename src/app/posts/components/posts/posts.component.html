@@ -1,0 +1,19 @@
+<div class="container-fluid posts-container">
+  <div class="row">
+    <div class="col-lg-9 col-md-9 col-xs-12 col-sm-12">
+      <div class="row">
+        <ng-container *ngFor="let post of postsData">
+          <div
+            class="col-lg-3 col-md-3 col-sm-1 col-xs-1"
+            style="margin-bottom: 25px"
+          >
+            <app-post [post]="post"></app-post>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="col-lg-3 col-nd-9 col-xs-12 col-sm-12">
+      <app-post-form></app-post-form>
+    </div>
+  </div>
+</div>

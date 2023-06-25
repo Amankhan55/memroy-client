@@ -1,0 +1,9 @@
+https://console.cloud.google.com/
+
+memoryapp login
+
+clientId: 558991006616-n6n1dm4jp1ih8vko2of308ocpv2rasqb.apps.googleusercontent.com
+
+clientSecret: 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
+
+https://id.heroku.com/login (backend deployment)
